@@ -13,7 +13,7 @@ class SparseAutoencoder(Autoencoder):
         self._forward()
 
     def _reconst_error(self):
-        return tf.nn.l2_loss(self.inputs - self.outputs) / tf.shape(self.inputs)[0]
+        return tf.nn.l2_loss(self.inputs - self.outputs) / tf.to_float(tf.shape(self.inputs)[0])
 
     def _kl_divergence(self):
         active_rates = tf.reduce_mean(self.h, 0)

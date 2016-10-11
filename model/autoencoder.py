@@ -39,4 +39,4 @@ class Autoencoder(object):
         self.outputs = tf.nn.bias_add(tf.matmul(self.h, self.fc2w), self.fc2b)
 
     def cost(self):
-        return tf.nn.l2_loss(self.inputs - self.outputs) / tf.shape(self.inputs)[0]
+        return tf.nn.l2_loss(self.inputs - self.outputs) / tf.to_float(tf.shape(self.inputs)[0])
