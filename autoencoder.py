@@ -67,17 +67,17 @@ def main():
 
         output = sess.run(autoencoder.output, feed_dict={inputs: X_test})
 
-    plt.figure()
-    for i in xrange(len(output)):
-        img = output[i, :]
-        plt.subplot(8, 8, 2 * i + 1)
-        plt.imshow(img.reshape(28, 28), cmap='gray')
-        plt.axis('off')
-        x = X_test[i, :]
-        plt.subplot(8, 8, 2 * i + 2)
-        plt.imshow(x.reshape(28, 28), cmap='gray')
-        plt.axis('off')
-    plt.show()
+    # plt.figure()
+    # for i in xrange(len(output)):
+    #     img = output[i, :]
+    #     plt.subplot(8, 8, 2 * i + 1)
+    #     plt.imshow(img.reshape(28, 28), cmap='gray')
+    #     plt.axis('off')
+    #     x = X_test[i, :]
+    #     plt.subplot(8, 8, 2 * i + 2)
+    #     plt.imshow(x.reshape(28, 28), cmap='gray')
+    #     plt.axis('off')
+    # plt.show()
 
 
 if __name__ == '__main__':
