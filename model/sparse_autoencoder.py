@@ -12,14 +12,17 @@ class SparseAutoencoder(Autoencoder):
 
         self._forward()
 
-    def _reconst_error(self):
+    def reconst_error(self):
         return tf.nn.l2_loss(self.inputs - self.outputs) / tf.to_float(tf.shape(self.inputs)[0])
 
-    def _kl_divergence(self):
+    def kl_divergence(self):
         active_rates = tf.reduce_mean(self.h, 0)
         return tf.reduce_sum(
             self.sparsity * tf.log(self.sparsity / active_rates)
             + (1 - self.sparsity) * tf.log((1 - self.sparsity) / (1 - active_rates)))
+
+    def weight_decay(self):
+        return tf.nn.l2_loss(self.fc1w) + tf.nn.l2_loss(self.fc2w)
 
     def cost(self):
         return self._reconst_error() + self._kl_divergence()
