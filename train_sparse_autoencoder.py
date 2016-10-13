@@ -3,7 +3,7 @@ from model import SparseAutoencoder
 import input_data
 
 
-N_HIDDEN = 2000
+N_HIDDEN = 1000
 SPARSITY = 0.001
 ITER_MAX = 100000
 BATCH_SIZE = 50
@@ -15,7 +15,7 @@ def main():
 
     inputs = tf.placeholder(tf.float32, [None, 28 * 28])
     encoder = SparseAutoencoder(inputs, n_input=28 * 28, n_hidden=N_HIDDEN, sparsity=SPARSITY)
-    cost = encoder.cost()
+    cost = encoder.reconst_error() + 3. * encoder.kl_divergence() + 0.01 * encoder.weight_decay()
     optimizer = tf.train.AdamOptimizer().minimize(cost)
     saver = tf.train.Saver()
 
