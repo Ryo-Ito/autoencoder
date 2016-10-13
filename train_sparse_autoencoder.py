@@ -16,7 +16,7 @@ def main():
     parser.add_argument('--learning_rate', type=float, default=0.001, help='learning rate for gradient-like method')
     parser.add_argument('--batch_size', type=int, default=50, help='size of mini batch')
     parser.add_argument('--display_step', type=int, default=1000, help='how often show learning state')
-    parser.add_argument('--output', type=float, default="sparse_autoencoder.ckpt", help="file name of trained model")
+    parser.add_argument('--output', type=str, default="sparse_autoencoder.ckpt", help="file name of trained model")
     args = parser.parse_args()
 
     mnist = input_data.read_data_sets(args.data_dir)
