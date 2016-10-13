@@ -1,7 +1,7 @@
 import argparse
 import matplotlib.pyplot as plt
 import tensorflow as tf
-from model import SparseAutoencoder
+from model import Autoencoder
 
 
 def main():
@@ -13,7 +13,7 @@ def main():
     args = parser.parse_args()
 
     inputs = tf.placeholder(tf.float32, [None, args.n_input])
-    encoder = SparseAutoencoder(inputs, args.n_input, args.n_hidden)
+    encoder = Autoencoder(inputs, args.n_input, args.n_hidden)
     saver = tf.train.Saver()
 
     with tf.Session() as sess:
