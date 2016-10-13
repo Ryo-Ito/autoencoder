@@ -27,3 +27,7 @@ def main():
         plt.imshow(weights[:, i].reshape(28, 28), cmap='gray')
         plt.axis('off')
     plt.save(args.output)
+
+
+if __name__ == '__main__':
+    main()
