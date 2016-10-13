@@ -8,7 +8,7 @@ def main():
     parser = argparse.ArgumentParser(description="train sparse autoencoder")
     parser.add_argument('--data_dir', type=str, default="MNIST_data/", help='directory of input dataset')
     parser.add_argument('--n_input', type=int, default=28 * 28, help='number of input nodes')
-    parser.add_argument('--n_hidden', type=int, default=400, help='number of hidden nodes')
+    parser.add_argument('--n_hidden', type=int, default=100, help='number of hidden nodes')
     parser.add_argument('--sparse_coef', type=float, default=0.1, help='coefficient for sparsity term')
     parser.add_argument('--sparsity', type=float, default=0.001, help='desired sparsity of hidden nodes')
     parser.add_argument('--weight_coef', type=float, default=0.001, help='coefficient for weight decay term')
