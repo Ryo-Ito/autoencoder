@@ -26,7 +26,7 @@ def main():
         plt.subplot(len_, len_, i + 1)
         plt.imshow(weights[:, i].reshape(28, 28), cmap='gray')
         plt.axis('off')
-    plt.save(args.output)
+    plt.savefig(args.output)
 
 
 if __name__ == '__main__':
