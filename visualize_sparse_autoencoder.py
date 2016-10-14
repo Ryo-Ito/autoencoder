@@ -1,14 +1,16 @@
 import argparse
+import matplotlib
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from model import Autoencoder
+matplotlib.use('Agg')
 
 
 def main():
     parser = argparse.ArgumentParser(description="train sparse autoencoder")
     parser.add_argument('--model', type=str, default="sparse_autoencoder.ckpt", help='filename of the model to visualize')
     parser.add_argument('--n_input', type=int, default=28 * 28, help='number of input nodes')
-    parser.add_argument('--n_hidden', type=int, default=100, help='number of hidden nodes')
+    parser.add_argument('--n_hidden', type=int, default=49, help='number of hidden nodes')
     parser.add_argument('--output', type=str, default="filters.png", help="filename to save learned filters")
     args = parser.parse_args()
 
