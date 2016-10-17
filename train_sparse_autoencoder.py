@@ -12,7 +12,7 @@ def main():
     parser.add_argument('--n_hidden', type=int, default=49, help='number of hidden nodes')
     parser.add_argument('--sparse_coef', type=float, default=1., help='coefficient for sparsity term')
     parser.add_argument('--sparsity', type=float, default=0.1, help='desired sparsity of hidden nodes')
-    parser.add_argument('--weight_coef', type=float, default=0.01, help='coefficient for weight decay term')
+    parser.add_argument('--weight_coef', type=float, default=0.1, help='coefficient for weight decay term')
     parser.add_argument('--iter_max', type=int, default=100000, help='maximum number of iterations')
     parser.add_argument('--learning_rate', type=float, default=0.001, help='learning rate for gradient-like method')
     parser.add_argument('--batch_size', type=int, default=50, help='size of mini batch')
