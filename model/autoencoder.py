@@ -40,3 +40,6 @@ class Autoencoder(object):
 
     def reconst_error(self):
         return tf.nn.l2_loss(self.inputs - self.outputs) / tf.to_float(tf.shape(self.inputs)[0])
+
+    def weight_decay(self):
+        return tf.nn.l2_loss(self.fc1w) + tf.nn.l2_loss(self.fc2w)

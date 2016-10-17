@@ -12,6 +12,3 @@ class SparseAutoencoder(Autoencoder):
         return tf.reduce_sum(
             sparsity * tf.log(sparsity / active_rates)
             + (1 - sparsity) * tf.log((1 - sparsity) / (1 - active_rates)))
-
-    def weight_decay(self):
-        return tf.nn.l2_loss(self.fc1w) + tf.nn.l2_loss(self.fc2w)
