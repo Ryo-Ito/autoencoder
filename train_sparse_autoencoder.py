@@ -1,4 +1,5 @@
 import argparse
+import matplotlib.pyplot as plt
 import tensorflow as tf
 from model import SparseAutoencoder
 import input_data
@@ -16,7 +17,6 @@ def main():
     parser.add_argument('--learning_rate', type=float, default=0.001, help='learning rate for gradient-like method')
     parser.add_argument('--batch_size', type=int, default=50, help='size of mini batch')
     parser.add_argument('--display_step', type=int, default=1000, help='how often show learning state')
-    parser.add_argument('--output', type=str, default="sparse_autoencoder.ckpt", help="file name of trained model")
     args = parser.parse_args()
 
     mnist = input_data.read_data_sets(args.data_dir)
@@ -27,16 +27,25 @@ def main():
             + args.sparse_coef * encoder.kl_divergence(args.sparsity)
             + args.weight_coef * encoder.weight_decay())
     optimizer = tf.train.AdamOptimizer(args.learning_rate).minimize(cost)
-    saver = tf.train.Saver()
 
     with tf.Session() as sess:
         sess.run(tf.initialize_all_variables())
         for i in xrange(args.iter_max):
             batch = mnist.train.next_batch(args.batch_size)[0]
-            loss, _ = sess.run((cost, optimizer), feed_dict={inputs: batch})
+            sess.run(optimizer, feed_dict={inputs: batch})
             if i % args.display_step == 0:
+                loss = sess.run(cost, feed_dict={inputs: batch})
                 print "step %5d, cost %f" % (i, loss)
-        saver.save(sess, args.output)
+        weights = sess.run(encoder.fc1w)
+
+    len_ = int(args.n_hidden ** 0.5)
+    assert len_ ** 2 == args.n_hidden
+    plt.figure()
+    for i in xrange(args.n_hidden):
+        plt.subplot(len_, len_, i + 1)
+        plt.imshow(weights[:, i].reshape(28, 28), cmap='gray')
+        plt.axis('off')
+    plt.show()
 
 
 if __name__ == '__main__':
