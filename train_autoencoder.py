@@ -1,8 +1,8 @@
 import argparse
 import matplotlib.pyplot as plt
 import tensorflow as tf
+from tensorflow.examples.tutorials.mnist import input_data
 from model import Autoencoder
-import input_data
 
 
 def main():
